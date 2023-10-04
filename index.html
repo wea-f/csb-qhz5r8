@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap');
+
+html {
+  font-family:"Fredoka", "sans-serif";
+  background-color:#1E88E5;
+  color: white;
+}
+
+button {
+  font-family: "Fredoka", "sans-serif";
+  background-color:#64DD17;
+  color:white;
+  border-color:white;
+  display:block;
+  margin: 0 auto;
+  font-size: 18px;
+  
+}
+
+#copy {
+  background-color:#512DA8;
+  
+}
+
+#title {
+  color:#E53935;
+}
+
+#how_it_works {
+  background-color:#00E5FF;
+  font-size:15px;
+  border-color:#1E88E5;
+  bottom:0;
+}
+
+#more_info {
+  display:hidden;
+
+}
+input {
+  font-family: "Fredoka", "sans-serif";
+  background-color:#F57F17;
+  color:white;
+  border-color:white;
+  display:block;
+  margin:0 auto;
+  font-size:20px;
+}
+
+h1, h3, h4, h5 {
+  text-align:center;
+}
+
+iframe {
+  display:block;
+  margin:0 auto;
+}
+
+#tip {
+  color:lightgreen;
+}
+
+#copy_tip {
+  color:#512DA8;
+}
+    </style>
+  </head>
+<body>
+<h1 id="title"> Norepted <h1> 
+ <h3> Paste your youtube link in the orange box. Then press the LAUNCH button. </h3>
+  <h4 id="copy_tip"> If you want, press the "COPY" button to copy a link, open it in a new tab.</h4>
+    <h4 id="tip"> Tip: Press "Enter" on your keyboard to launch the video faster. </h4>
+  <br>
+  <input id="link"><br>
+  <button onclick="fix_link()"> LAUNCH </button>
+  <br>
+  <button id="copy" onclick="copy_link()"> COPY </button>
+  <h3> The video will show down here</h3>
+  <h5> (It might take a few seconds) </h5>
+  <iframe id="video" width="650" height="425" frameborder="0" src=" " allowfullscreen> </iframe>
+  <br>
+     <button id="how_it_works"onclick="how_it_works()"> More Information / Terms </button>
+  
+     <h5 id="socials"> Made by the user <a href="https://codepen.io/weaF_z" target=”_blank”> WG563 on codepen.io </a>, aka <a href="https://github.com/wea-f" target=”_blank”>wea-f on github </a>, aka <a href="https://replit.com/@wea-F" target=”_blank”> wea-F on replit </a> </h5>
+
+    
+   </body>
+<script>
+function fix_link() {
+  var link = document.getElementById("link").value
+  
+  var link2 = link.replace(/ /gi, "")
+  var video_id = link.replace("https://www.youtube.com/watch?v=", "")
+  video_id = video_id.replace("https://youtu.be/", "")
+  //video_id = video_id.replace("&feature=emb_rel_pause", "")
+  video_id = video_id.replace("&embeds_euri=https%3A%2F%2Fcdpn.io%2F&feature=emb_rel_end", "")
+  var final_link = "https://www.youtube-nocookie.com/embed/" + video_id
+  final_link = final_link.replace("&feature=emb_rel_end","")
+  document.getElementById("video")
+.src = final_link
+}
+
+document.body.onkeyup = function(c) {
+  if (c.key == "Enter" ||
+      c.code == "Enter" ||      
+      c.keyCode == 13      
+  ) {
+    fix_link()
+    
+  }
+}
+
+function copy_link() {
+    var link = document.getElementById("link").value
+    var link2 = link.replace(/ /gi, "")
+    var video_id = link.replace("https://www.youtube.com/watch?v=", "")
+    video_id = video_id.replace("https://youtu.be/", "")
+    video_id = video_id.replace("&feature=emb_rel_pause", "")
+    video_id = video_id.replace("&embeds_euri=https%3A%2F%2Fcdpn.io%2F&feature=emb_rel_end","")
+    var final_link = "https://www.youtube-nocookie.com/embed/" + video_id
+    navigator.clipboard.writeText(final_link)
+}
+
+function how_it_works() {
+    window.open("https://github.com/wea-f/Norepted/tree/master")
+}
+
+</script>
+</html>
